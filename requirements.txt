@@ -1,0 +1,12 @@
+# This file is under Adobe Research License. Copyright 2025 Adobe Inc.
+decord
+transformers>=4.32.1
+scipy
+numpy
+tqdm
+timm
+einops
+pandas
+ftfy
+opencv-python
+openai
