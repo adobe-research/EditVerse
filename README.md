@@ -1,12 +1,20 @@
 # EditVerse
 
 
-This repository contains the **instruction-based video editing evaluation code for EditVerseBench** in paper "EditVerse: A Unified Framework for Editing and Generation via In-Context Learning".
+This repository contains the **instruction-based video editing evaluation code for EditVerseBench** in the paper "EditVerse: A Unified Framework for Editing and Generation via In-Context Learning".
 
 
 > [Xuan Ju](https://juxuan27.github.io/)<sup>12</sup>, [Tianyu Wang](https://scholar.google.com/citations?user=yRwZIN8AAAAJ&hl=zh-CN)<sup>1</sup>, [Yuqian Zhou](https://yzhouas.github.io/)<sup>1</sup>, [He Zhang](https://sites.google.com/site/hezhangsprinter)<sup>1</sup>, [Qing Liu](https://qliu24.github.io/)<sup>1</sup>, [Nanxuan Zhao](https://www.nxzhao.com/)<sup>1</sup>, [Zhifei Zhang](https://zzutk.github.io/)<sup>1</sup>, [Yijun Li](https://yijunmaverick.github.io/)<sup>1</sup>, [Yuanhao Cai](https://caiyuanhao1998.github.io/)<sup>3</sup>, [Shaoteng Liu](https://www.shaotengliu.com/)<sup>1</sup>, [Daniil Pakhomov](https://scholar.google.com/citations?user=UI10l34AAAAJ&hl=en)<sup>1</sup>, [Zhe Lin](https://sites.google.com/site/zhelin625/)<sup>1</sup>, [Soo Ye Kim](https://sites.google.com/view/sooyekim)<sup>1*</sup>, [Qiang Xu](https://cure-lab.github.io/)<sup>2*</sup><br>
 > <sup>1</sup>Adobe Research <sup>2</sup>The Chinese University of Hong Kong <sup>3</sup>Johns Hopkins University <sup>*</sup>Corresponding Author
 
+
+<p align="center">
+  <a href="http://editverse.s3-website-us-east-1.amazonaws.com/">🌐 Project Page</a> |
+  <a href="https://arxiv.org/abs/2509.20360">📜 Arxiv</a> |
+  <a href="https://huggingface.co/datasets/sooyek/EditVerseBench">🤗 Benchmark</a> |
+  <a href="https://docs.google.com/presentation/d/1dBg3lZDFa8mRRIrOVEU_xDgzedufbwzr/edit?usp=sharing&ouid=100286465794673637256&rtpof=true&sd=true">📹 Slides</a> |
+  <a href="http://editverse.s3-website-us-east-1.amazonaws.com/comparison.html">👀 Comparison</a>
+</p>
 
 
 ## Setup Environment
@@ -42,10 +50,22 @@ git lfs install
 git clone https://huggingface.co/datasets/sooyek/EditVerseBench
 ```
 
-You can download the source videos from Pixabay using the links in `EditVerseBench/EditVerseBench/test.json`. The benchmark file structure should be like:
+**Download the videos**
+
+The source videos cannot be directly distributed due to licensing restrictions. Instead, you can download them using the provided script with the Pixabay API. (The network connection may occasionally fail, so you might need to run the script multiple times.) 
+
+> ⚠️ Note: Please remember to revise the API key to your own key in download_source_video.py. You can find the API key here (marked in Parameters-key(required) on the website). The API is free, but you need to sign up for an account to get the API key. 
 
 ```
-EditVerseBench/EditVerseBench/
+cd EditVerseBench
+python download_source_video.py
+```
+
+
+The benchmark file structure should be like:
+
+```
+EditVerseBench/
   ├── test.json
   ├── depths/
   │   ├── xx.mp4
@@ -187,3 +207,17 @@ python eval.py --metrics all \
 
 ## License
 Files under `./automatic_evaluation/viclip` are from [InternVideo](https://github.com/OpenGVLab/InternVideo) and under [Apache 2.0 License](https://github.com/OpenGVLab/InternVideo?tab=Apache-2.0-1-ov-file#readme). Files under `./automatic_evaluation` except for those under the folder `viclip` are modified from [awesome-diffusion-v2v](https://github.com/wenhao728/awesome-diffusion-v2v/tree/main) under [MIT License](https://github.com/wenhao728/awesome-diffusion-v2v/tree/main?tab=MIT-1-ov-file#readme) and modifications by Adobe are under [Adobe Research License](https://github.com/OneAdobe/EditVerse/blob/main/LICENSE.md). All other materials are licensed under [Adobe Research License](https://github.com/OneAdobe/EditVerse/blob/main/LICENSE.md).
+
+## Cite Us
+
+If you find our work useful for your research, please consider citing our paper:
+
+```
+@article{ju2025editverse,
+  title   = {EditVerse: Unifying Image and Video Editing and Generation with In-Context Learning},
+  author  = {Xuan Ju and Tianyu Wang and Yuqian Zhou and He Zhang and Qing Liu and Nanxuan Zhao and Zhifei Zhang and Yijun Li and Yuanhao Cai and Shaoteng Liu and Daniil Pakhomov and Zhe Lin and Soo Ye Kim and Qiang Xu},
+  journal = {arXiv preprint arXiv:2509.20360},
+  year    = {2025},
+  url     = {https://arxiv.org/abs/2509.20360}
+}
+```
