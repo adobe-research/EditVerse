@@ -54,7 +54,7 @@ git clone https://huggingface.co/datasets/sooyek/EditVerseBench
 
 The source videos cannot be directly distributed due to licensing restrictions. Instead, you can download them using the provided script with the Pixabay API. (The network connection may occasionally fail, so you might need to run the script multiple times.) 
 
-> ⚠️ Note: Please remember to revise the API key to your own key in download_source_video.py. You can find the API key here (marked in Parameters-key(required) on the website). The API is free, but you need to sign up for an account to get the API key. 
+> ⚠️ Note: Please remember to revise the API key to your own key in download_source_video.py. You can find the API key [here](https://pixabay.com/api/docs/#api_search_images) (marked in Parameters-key(required) on the website). The API is free, but you need to sign up for an account to get the API key. 
 
 ```
 cd EditVerseBench
@@ -204,6 +204,75 @@ python eval.py --metrics all \
 --gpt_api_key [your_api_key]
 
 ```
+
+
+## Benchmark Results
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2">Method</th>
+      <th colspan="1">VLM evaluation</th>
+      <th colspan="1">Video Quality</th>
+      <th colspan="2">Text Alignment</th>
+      <th colspan="2">Temporal Consistency</th>
+    </tr>
+    <tr>
+      <th>Editing Quality ↑</th>
+      <th>Pick Score ↑</th>
+      <th>Frame ↑</th>
+      <th>Video ↑</th>
+      <th>CLIP ↑</th>
+      <th>DINO ↑</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Attention Manipulation -->
+    <tr>
+      <td colspan="7" style="text-align:center; font-weight:bold;">Attention Manipulation (Training-free)</td>
+    </tr>
+    <tr>
+      <td><b>TokenFlow</b></td>
+      <td>5.26</td><td>19.73</td><td>25.57</td><td>22.70</td><td>98.36</td><td>98.09</td>
+    </tr>
+    <tr>
+      <td><b>STDF</b></td>
+      <td>4.41</td><td>19.45</td><td>25.24</td><td>22.26</td><td>96.04</td><td>95.22</td>
+    </tr>
+    <!-- First-Frame Propagation -->
+    <tr>
+      <td colspan="7" style="text-align:center; font-weight:bold;">First-Frame Propagation (w/ End-to-End Training)</td>
+    </tr>
+    <tr>
+      <td><b>Señorita-2M</b></td>
+      <td>6.97</td><td>19.71</td><td>26.34</td><td>23.24</td><td>98.05</td><td>97.99</td>
+    </tr>
+    <!-- Instruction-Guided -->
+    <tr>
+      <td colspan="7" style="text-align:center; font-weight:bold;">Instruction-Guided (w/ End-to-End Training)</td>
+    </tr>
+    <tr>
+      <td><b>InsV2V</b></td>
+      <td>5.21</td><td>19.39</td><td>24.99</td><td>22.54</td><td>97.15</td><td>96.57</td>
+    </tr>
+    <tr>
+      <td><b>Lucy Edit</b></td>
+      <td>5.89</td><td>19.67</td><td>26.00</td><td>23.11</td><td>98.49</td><td>98.38</td>
+    </tr>
+    <tr>
+      <td><b>Ours (Ours)</b></td>
+      <td><b>7.65</b></td><td><b>20.07</b></td><td><b>26.73</b></td><td><b>23.93</b></td><td><b>98.56</b></td><td><b>98.42</b></td>
+    </tr>
+    <!-- Closed-Source -->
+    <!-- <tr>
+      <td colspan="7" style="text-align:center; font-weight:bold; color:gray;">Closed-Source Commercial Models</td>
+    </tr>
+    <tr style="color:gray;">
+      <td>Runway Aleph</td>
+      <td>7.44</td><td>20.42</td><td>27.70</td><td>24.27</td><td>98.94</td><td>98.60</td>
+    </tr> -->
+  </tbody>
+</table>
+
 
 ## License
 Files under `./automatic_evaluation/viclip` are from [InternVideo](https://github.com/OpenGVLab/InternVideo) and under [Apache 2.0 License](https://github.com/OpenGVLab/InternVideo?tab=Apache-2.0-1-ov-file#readme). Files under `./automatic_evaluation` except for those under the folder `viclip` are modified from [awesome-diffusion-v2v](https://github.com/wenhao728/awesome-diffusion-v2v/tree/main) under [MIT License](https://github.com/wenhao728/awesome-diffusion-v2v/tree/main?tab=MIT-1-ov-file#readme) and modifications by Adobe are under [Adobe Research License](https://github.com/OneAdobe/EditVerse/blob/main/LICENSE.md). All other materials are licensed under [Adobe Research License](https://github.com/OneAdobe/EditVerse/blob/main/LICENSE.md).
